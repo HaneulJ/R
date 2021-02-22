@@ -60,7 +60,7 @@ which.min(nums)
 
 #문제4
 # 1부터 10 까지 출력하는데 3씩 증가 되는 형태로(1 4 7 10)저장되는 벡터를 정의하여 v8 변수에 저장한 다음 R 의 내장 백터를 활용하여 v8의 각 원소에 "A", "B", "C", D" 라는 이름을 부여한다.
-v8 <- seq( from=1, to=10, by=3 )
+v8 <- seq(1, 10, by=3)
 names(v8) <- LETTERS[1:4]
 
 
@@ -79,7 +79,7 @@ myFriend[which.max(score)]
 myFriend[which.min(score)]
 
 # 점수가 10점보다 높은 친구의 이름들 출력
-myFriende[which(score>10)]
+myFriend[which(score>10)]
 
 
 # 문제6
