@@ -2,28 +2,35 @@
 # 데이터셋이 몇 개의 관측치를 가지고 있으며 어떠한 변수들을 가지고 있는지 체크
 str(iris)
 
+
 # 문제2
-df1 <- data.frame(x=c(1:5),y=seq(2,10,2))
+df1 <- data.frame(x=c(1:5),y=seq(2,10,2)) # 행 넘버는 자동으로 부여
+
 
 # 문제3
-df2 <- data.frame(col1=c(1:5),col2=letters[1:5], col3=c(6:10))
+df2 <- data.frame(col1=c(1:5),col2=letters[1:5], col3=c(6:10)) # 파라미터 지정할 때는 = 만 사용!
+
 
 # 문제4
 제품명 <- c("사과", "딸기", "수박")
 가격 <- c(1800, 1500, 3000)
 판매량 <- c(24,38,13)
 df3 <- data.frame(제품명, 가격, 판매량)
+class(df3)
+
 
 # 문제5
 # 과일 가격 평균, 판매량 평균을 구하여 출력
 mean(df3$가격)
 mean(df3$판매량)
 
+
 # 문제6
 name <- c('Potter', 'Elsa', 'Gates', 'Wendy', 'Ben')
 gender <- factor(c('M', 'F', 'M', 'F', 'M'))
 math <- c(85, 76, 99, 88, 40)
 df4 <- data.frame(name, gender, math)
+str(df4)
 
 # stat 변수 추가
 df4$stat <- c(76, 73, 95, 82, 35)
@@ -63,12 +70,12 @@ myemp[,c("ename","sal")]
 
 # 문제12
 # myemp 에서 직무가 SALESMAN 인 사원의 이름, 월급, 직업을 출력한다.
-myemp[myemp$job=="SALESMAN",c("ename","sal", "job")]
+myemp[myemp$job == "SALESMAN",c("ename","sal", "job")]
 
 
 # 문제13
 # myemp 에서 월급이 1000 이상이고 3000이하인 사원들의 이름, 월급, 부서번호를 출력한다.
-myemp[myemp$sal>=1000 & myemp$sal<=3000,c("ename","sal", "mgr")]
+myemp[myemp$sal>=1000 & myemp$sal<=3000,c("ename","sal", "deptno")]
       
       
       
@@ -99,8 +106,8 @@ dim(myemp)
 
 # 문제19
 # myemp 에서 부서별 직원이 몇 명인지 출력한다.
-f_mgr <- factor(myemp$mgr)
-summary(f_mgr)
+f_deptno <- factor(myemp$deptno)
+summary(f_deptno)
 
 
 # 문제20
