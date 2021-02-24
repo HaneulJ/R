@@ -96,18 +96,17 @@ myemp[is.na(myemp$comm), c("ename","sal")]
 
 # 문제17
 # myemp 에서 월급이 적은 순으로 모든 직원 정보를 출력한다.
-myemp[order(myemp$sal),]
-
+myemp[order(myemp$sal),] # sort를 쓸 경우 월급 금액만 출력
 
 # 문제18
 # myemp의 행과 열의 갯수를 점검한다.
-dim(myemp)
+dim(myemp) # 변수 타입이나 구조: str()
 
 
 # 문제19
 # myemp 에서 부서별 직원이 몇 명인지 출력한다.
-f_deptno <- factor(myemp$deptno)
-summary(f_deptno)
+myemp$deptno <- factor(myemp$deptno)
+summary(myemp$deptno)
 
 
 # 문제20
