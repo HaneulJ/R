@@ -5,3 +5,5 @@
 
 iotest2 <- scan('data/iotest2.txt',what="")
 cat("가장 많이 등장한 단어는 ", max(iotest2),"입니다.")
+
+summary(as.factor(iotest2))

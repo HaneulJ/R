@@ -3,7 +3,8 @@
 
 # 오름차순 : …., 내림차순 : …., 합 : ...
 
-iotest1 <- scan("data/iotest1.txt", what=integer(0)) 
+iotest1 <- scan("data/iotest1.txt", what=integer(0)) # 리턴값: 숫자 벡터
 cat("오름차순:", sort(iotest1))
 cat("내림차순:", sort(iotest1, decreasing = TRUE))
 cat("합:", sum(iotest1))
+cat("평균:", mean(iotest1))

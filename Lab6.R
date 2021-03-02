@@ -8,16 +8,21 @@
 countEvenOdd <- function(n){
   evencount <- 0
   oddcount <- 0
-  if(is.numeric(n)){
-    if(n %% 2 ==0){
-      evencount <- +1
-    }else  oddcount <- +1
+  if(!is.numeric(n)|!is.vector(n))
+    return()
+  else{
+    for(i in 1:length(n)){
+      if(n[i] %% 2 ==0){
+      evencount <- evencount+1
+      }else  oddcount <- oddcount+1
+    }
    return(list(even=evencount, odd=oddcount))
-  }else return()
+  }
 }
 
 countEvenOdd(1)
 countEvenOdd(6)
+countEvenOdd(c(1,2,3,6))
 countEvenOdd("ㅎ")
 
 
@@ -32,7 +37,7 @@ vmSum <- function(v){
   sum <- 0
   if (is.vector(v) & !is.list(v)){
     if(is.numeric(v)){
-      return(sum(1:v))
+      return(sum(v))
     }else{
       print("숫자 벡터를 전달해!")
       return(0)
@@ -43,6 +48,10 @@ vmSum <- function(v){
 vmSum(5)
 vmSum(5,8)
 vmSum("^^")
+vmSum(list(1,2,3))
+vmSum(c(1,2,3))
+
+
 
 
 
@@ -58,7 +67,7 @@ vmSum2 <- function(p){
   sum <- 0
   if (is.vector(p) & !is.list(p)){
     if(is.numeric(p)){
-      return(sum(1:p))
+      return(sum(p))
     }else{
       warning("숫자 벡터를 전달해!")
       return(0)
@@ -67,6 +76,7 @@ vmSum2 <- function(p){
 }
 
 vmSum2(6)
+vmSum2(c(1,6,9))
 vmSum2("%")
 
 
@@ -85,17 +95,17 @@ mySum <- function(...){
   else if (is.vector(x) & !is.list(x)){
     if(any(is.na(x))){
       warning("NA를 최저값으로 변경하여 처리함!")
-      x[is.na(x)] <- x[min(x)]
+      x[is.na(x)] <- min(x, na.rm=T) #na.rm=T, na값 제거, 나머지값으로 최소값을 구하라
       return(list(oddSum = sum(x[seq(1,length(x),2)]), evenSum = sum(x[seq(0,length(x),2)])))
       } else if(all(is.numeric(x)))
     return(list(oddSum = sum(x[seq(1,length(x),2)]), evenSum = sum(x[seq(0,length(x),2)])))
   }else stop("벡터만 처리 가능!")
 }
 
-mySum(4,7,6,9,10)
-mySum(7)
+mySum(c(4,7,6,9,10))
+mySum(1:7)
 mySum(NA,5,6)
-mySum()
+mySum(data.frame(2))
 
 
 
@@ -110,12 +120,15 @@ mySum()
 
 myExpr <- function(q){
   if(is.function(q)){
-    q <- sample(1:45,6)
-    return(q)
+    return(q(sample(1:45,6)))
   }else stop("수행 안해")
 }
 
-myExpr(45)
+myExpr(2)
+myExpr(mean)
+myExpr(max)
+myExpr(sort)
+myExpr(base::sum) # basepackage에 내장되어있는 기본 sum함수로 처리
 myExpr(b())
 
 
@@ -136,6 +149,10 @@ createVector1 <- function(...){
 createVector1(15,3,6,6)
 createVector1(15,3,6,NA)
 createVector1()
+createVector1(15,3,6,T)
+createVector1(15,3,6,'a')
+
+
 
 
 # 문제7
@@ -146,13 +163,13 @@ createVector1()
 
 
 createVector2 <- function(...){
-  f <- list(...)
-  result <- NULL
+  f <- list(...) # 데이터 타입 그대로 유지
   if(is.null(f)) return()
-  else if(is.vector(x)  & !is.list(x)) result[1]
-  else if(is.data.frame(x)) result[2]
-  else if(is.matrix(x)) result[3]
-  else if(is.array(x)) result[4]
-  else if(is.function(x)) result[5]
-  return(result)
+  else 
+  return(f)
 }
+
+createVector2()
+createVector2(1,2, "가나")
+createVector2(A=c(1:4),LETTERS,"가나다")
+createVector2(1,2,3,T)
