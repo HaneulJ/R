@@ -226,7 +226,7 @@ for (booksite in booksites) {
 }
 
 
-# [gs25 이벤트 상품 정보보]
+# [gs25 이벤트 상품 정보보기]
 site <- 'http://gs25.gsretail.com/gscvs/ko/products/event-goods'
 remDr$navigate(site)
 
@@ -354,7 +354,7 @@ repeat{
   #병합
   starbucks <- rbind(starbucks ,cbind(shopname, addr, telephone, lat, lng))
   
-  #스크롤 다운(특정태그 영역에서)
+  #스크롤 다운(특정태그 영역에서) 주석처리해도 잘 이루워짐
   if(index %% 3 == 0 && index != total)
     remDr$executeScript("var dom=document.querySelectorAll('#mCSB_3_container > ul > li')[arguments[0]]; dom.scrollIntoView();", list(index)) # 자바스크립트로 해당태그에 대한 돔객체를 찾아서 그 돔 객체에 scrollIntoView
 }
@@ -374,7 +374,7 @@ remDr$navigate("https://google.com")
 
 # this returns a list of base64 characters
 screenshot <- remDr$screenshot(display = FALSE)
-# converts the base64 characters into a vector
+# converts the base64 characters into a vector, 16진수 코드값으로 바꾸기
 screenshot <- base64decode(toString(screenshot), output = NULL)
 # reads the vector as stores it as a PNG
 screenshot <- image_read(screenshot)
