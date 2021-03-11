@@ -9,24 +9,40 @@ font_add(family = "maple", regular = "fonts/MaplestoryBold.ttf")
 # 세로 바 그래프를 칼라는 terrain.colors 칼라로 설정한다. 
 # 그래프 메인 제목 : "세로바 그래프 실습"
 # clicklog1.png 에 저장한다.
+dev.copy(png, 'output/clicklog1.png')
 
-(click <- read.table("data/product_click.log", sep=" "));
-pc <- click[,2]; pc
+(click <- read.table("data/product_click.log"));
+head(click)
+pc <- click[,2]; 
+pc1 <- table(pc)
 
-barplot(pc, main = "세로바 그래프 실습 ",main.col="red", col = terrain.colors(10),
+barplot(pc1, main = "세로바 그래프 실습 ", col.main="red", col = terrain.colors(10),
      xlab='상품 ID', ylab='클릭 수', ylim=c(0,100), family="maple")
 
-
+dev.off()
 
 # 문제2
 # product_click.log 파일을 읽어와서 다음과 같이 상품이 클릭된 시간 정보를 가지고 파이그래프를 그리며 칼라는 자율이다. 
 # 그래프 메인 제목 : "파이그래프 실습"
 # 그래프는 clicklog2.png 에 저장한다.
 
+dev.copy(png, 'output/clicklog2.png')
+
+pc2 <- click$V1
+pc_hour <- substr(pc2, 9, 10)
+pc3 <- table(pc_hour)
+length(pc3)
 
 
+names(pc3)
+
+piename <- paste(as.integer(names(pc3)), "~",as.integer(names(pc3)) +1, sep='')
+names(pc3) <- piename
+pie(pc3, main="파이그래프 실습", col=rainbow(17), family="maple", 
+    col.main="blue")
 
 
+dev.off()
 
 # 문제3
 # 수업시간에 다뤘던 성적데이터를 가지고 다음과 같은 그래프를 R로 구현해 본다. 
